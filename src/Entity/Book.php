@@ -166,6 +166,7 @@ class Book
     {
         if (!$this->author->contains($author)) {
             $this->author->add($author);
+            $author->addBook($this);
         }
 
         return $this;

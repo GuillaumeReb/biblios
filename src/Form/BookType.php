@@ -24,7 +24,10 @@ class BookType extends AbstractType
         $builder
             ->add('title', TextType::class)
             ->add('isbn', TextType::class)
-            ->add('cover', UrlType::class)
+            ->add('cover', UrlType::class, [
+                'label' => 'Couverture (lien URL)',
+                'required' => false, // Champ non obligatoire
+            ])
             ->add('editedAt', DateType::class, [
                 'input' => 'datetime_immutable',
                 'widget' => 'single_text'
@@ -37,7 +40,7 @@ class BookType extends AbstractType
             ->add('editor', EntityType::class, [
                 'class' => Editor::class,
                 'choice_label' => 'name',
-                'multiple' => true,
+                'multiple' => false,
                 'by_reference' => false,
             ])
             ->add('author', EntityType::class, [
