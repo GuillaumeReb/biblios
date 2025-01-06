@@ -48,6 +48,9 @@ class Book
     private ?Editor $editor = null;
 
     #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'book', orphanRemoval: true)]
+    /**
+     * @var Collection<int, Comment>
+     */
     private Collection $comments;
 
     /**
