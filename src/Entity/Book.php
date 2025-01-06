@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: BookRepository::class)]
 class Book
@@ -17,21 +18,25 @@ class Book
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank()]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $title = null;
 
+    #[Assert\Isbn(type: 'isbn13')]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $isbn = null;
 
+    #[Assert\Url()]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $cover = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column(type: Types::DATE_IMMUTABLE, nullable: true)]
     private ?\DateTimeImmutable $editedAt = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $plot = null;
 
+    #[Assert\Type(type: "integer", message: "La valeur doit être un entier.")]
     #[ORM\Column(nullable: true)]
     private ?int $pageNumber = null;
 
@@ -42,6 +47,9 @@ class Book
     #[ORM\JoinColumn(nullable: false)]
     private ?Editor $editor = null;
 
+    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'book', orphanRemoval: true)]
+    private Collection $comments;
+
     /**
      * @var Collection<int, Author>
      */
@@ -50,6 +58,7 @@ class Book
 
     public function __construct()
     {
+        $this->comments = new ArrayCollection();
         $this->author = new ArrayCollection();
     }
 
@@ -153,6 +162,37 @@ class Book
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): static
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setBook($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): static
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getBook() === $this) {
+                $comment->setBook(null);
+            }
+        }
+
+        return $this;
+    }
+
 
     /**
      * @return Collection<int, Author>
