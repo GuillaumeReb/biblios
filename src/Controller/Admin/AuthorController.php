@@ -43,7 +43,8 @@ class AuthorController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_admin_author_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'app_admin_author_new', methods: ['GET', 'POST'])]   
+    #[Route('/{id}/edit', name: 'app_admin_author_edit', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
     public function new(?Author $author, Request $request, EntityManagerInterface $manager): Response
     {
         $author ??= new Author();
@@ -55,7 +56,7 @@ class AuthorController extends AbstractController
              $manager->persist($author);
              $manager->flush();
 
-             return $this->redirectToRoute('app_admin_author_new');
+             return $this->redirectToRoute('app_admin_author_show', ['id' => $author->getId()]);
         }
         
         return $this->render('admin/author/new.html.twig', [
