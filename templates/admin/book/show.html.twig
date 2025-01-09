@@ -22,7 +22,7 @@
                         <li class="list-group-item">Numéro ISBN : {{ book.isbn }}</li>
                         <li class="list-group-item">Date d'édition : {{ book.editedAt is not null ? book.editedAt|date('d M Y') : '-' }}</li>
                         <li class="list-group-item">Résumer : {{ book.plot }}</li>
-                        <li class="list-group-item">Nb de page : {{ book.pageNumber }}</li>
+                        <li class="list-group-item">Nb de pages : {{ book.pageNumber }}</li>
                         <li class="list-group-item">Status : {{ book.status is not null ? book.status.value : 'Non défini' }}</li>
                         <li class="list-group-item">
                              <h5>Éditeur : </h5>
