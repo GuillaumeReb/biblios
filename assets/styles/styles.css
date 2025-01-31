@@ -92,6 +92,7 @@
 }
 
 body {
+  padding-top: 80px; /* Ajuste en fonction de la hauteur de ta navbar */
   margin: 0;
   font-family: var(--bs-body-font-family);
   font-size: var(--bs-body-font-size);
