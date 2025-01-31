@@ -18,8 +18,12 @@
             {{ form_row(form.books, {label: 'Livres'})}}
             {{ form_row(form.certification) }}
             {{ form_widget(form) }}
-            <button type="submit" class="btn btn-primary">Envoyer</button>
+            <button type="submit" class="btn btn-outline-primary mt-3">Envoyer</button>            
+            <a href="{{ path('app_main') }}" class="btn btn-outline-secondary mt-3">
+            <i class="bi bi-arrow-left"></i> Retour
+            </a>
             {{ form_end(form) }}
+            {# <a href="{{ path('app_admin_author_index') }}" class="btn btn-warning">Retour</a> #}
         
     </div>
 </section>
