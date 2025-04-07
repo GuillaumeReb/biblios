@@ -1,3 +1,5 @@
 # biblios
 
-Mise à jour le 31/01/2025
+Mise à jour le 07/04/2025
+
+Pour lancer le projet : symfony serve:start
