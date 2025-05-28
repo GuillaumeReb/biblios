@@ -8,8 +8,8 @@
         .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
     </style>
     <div class="example-wrapper">
-    <h1>livre : </h1>
-    <h1>livre : </h1>
+    {# A effacer quand le site est fini, c'est moche #}
+    <h1>Livre : </h1>
          {% if book is not null %}
         <div class="card mb-1 m-auto">
             <div class="card-body">
@@ -26,7 +26,7 @@
                         <li class="list-group-item">Status : {{ book.status is not null ? book.status.value : 'Non défini' }}</li>
                         <li class="list-group-item">
                              <h5>Éditeur : </h5>
-                            {# <a href="{{ path('app_admin_editor_show', {id: book.editor.id}) }}">{{ book.editor.name }}</a> #}
+                            <a href="{{ path('app_admin_editor_show', {id: book.editor.id}) }}">{{ book.editor.name }}</a>
                         </li>
                         <li class="list-group-item">
                             <h5>Auteur : </h5>
