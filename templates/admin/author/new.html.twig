@@ -2,29 +2,34 @@
 
 {% set action = app.current_route == 'app_admin_author_new' ? 'Ajout' : 'Edition' %}
 
-{% block title %}{{ action }} d'auteur{% endblock %}
+{% block title %}
+	{{ action }}
+	d'auteur
+{% endblock %}
 
 {% block body %}
-<section class="container px-4">
-    <div class="w-50 m-auto">
-      
-            <h1>{{ action }} d'auteur</h1>
-            
-            {{ form_start(form) }}
-            {{ form_row(form.name, {label: 'Nom'}) }}
-            {{ form_row(form.dateOfBirth, {label: 'Date de Naissance'}) }}
-            {{ form_row(form.dateOfDeath, {label: 'Date de décès'})}}
-            {{ form_row(form.nationality, {label: 'Nationalité'})}}
-            {{ form_row(form.books, {label: 'Livres'})}}
-            {{ form_row(form.certification) }}
-            {{ form_widget(form) }}
-            <button type="submit" class="btn btn-outline-primary mt-3">Envoyer</button>            
-            <a href="{{ path('app_main') }}" class="btn btn-outline-secondary mt-3">
-            <i class="bi bi-arrow-left"></i> Retour
-            </a>
-            {{ form_end(form) }}
-            {# <a href="{{ path('app_admin_author_index') }}" class="btn btn-warning">Retour</a> #}
-        
-    </div>
-</section>
+	<section class="container px-4">
+		<div class="w-50 m-auto">
+
+			<h1>{{ action }}
+				d'auteur</h1>
+
+			{{ form_start(form) }}
+			{{ form_row(form.name, {label: 'Nom'}) }}
+			{{ form_row(form.dateOfBirth, {label: 'Date de Naissance'}) }}
+			{{ form_row(form.dateOfDeath, {label: 'Date de décès'})}}
+			{{ form_row(form.nationality, {label: 'Nationalité'})}}
+			{{ form_row(form.books, {label: 'Livres'})}}
+			{{ form_row(form.certification) }}
+			{{ form_widget(form) }}
+			<button type="submit" class="btn btn-outline-primary mt-3">Envoyer</button>
+			<a href="{{ path('app_main') }}" class="btn btn-outline-secondary mt-3">
+				<i class="bi bi-arrow-left"></i>
+				Retour
+			</a>
+			{{ form_end(form) }}
+			{# <a href="{{ path('app_admin_author_index') }}" class="btn btn-warning">Retour</a> #}
+
+		</div>
+	</section>
 {% endblock %}

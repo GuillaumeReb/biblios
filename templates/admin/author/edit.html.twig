@@ -1,29 +1,29 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<section class="container px-4">
-<div class="w-50 m-auto">
-    <h1>Modifier l’auteur</h1>
+	<section class="container px-4">
+		<div class="w-50 m-auto">
+			<h1>Modifier l’auteur</h1>
 
-    {{ form_start(form) }}
-    {{ form_row(form.name, {label: 'Nom'}) }}
-    {{ form_row(form.dateOfBirth, {label: 'Date de Naissance'}) }}
-    {{ form_row(form.dateOfDeath, {label: 'Date de décès'})}}
-    {{ form_row(form.nationality, {label: 'Nationalité'})}}
-    {{ form_row(form.books, {label: 'Livres'})}}
-    {{ form_row(form.certification) }}
-    {{ form_widget(form) }}
-        <button class="btn btn-warning">Mettre à jour</button>
-    {{ form_end(form) }}
-    <form method="post" action="{{ path('app_admin_author_delete', { id: author.id }) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cet auteur ?');">
-    <input type="hidden" name="_token" value="{{ csrf_token('delete_author_' ~ author.id) }}">
-    <button class="btn btn-danger">Supprimer</button>
-</form>
+			{{ form_start(form) }}
+			{{ form_row(form.name, {label: 'Nom'}) }}
+			{{ form_row(form.dateOfBirth, {label: 'Date de Naissance'}) }}
+			{{ form_row(form.dateOfDeath, {label: 'Date de décès'})}}
+			{{ form_row(form.nationality, {label: 'Nationalité'})}}
+			{{ form_row(form.books, {label: 'Livres'})}}
+			{{ form_row(form.certification) }}
+			{{ form_widget(form) }}
+			<button class="btn btn-warning">Mettre à jour</button>
+			{{ form_end(form) }}
+			<form method="post" action="{{ path('app_admin_author_delete', { id: author.id }) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cet auteur ?');">
+				<input type="hidden" name="_token" value="{{ csrf_token('delete_author_' ~ author.id) }}">
+				<button class="btn btn-danger">Supprimer</button>
+			</form>
 
-    <a href="{{ path('app_admin_author_show', { id: author.id }) }}">Voir l’auteur</a>
-    <a href="{{ path('app_admin_author_index') }}">Retour à la liste</a>
-    </div>
-</section>
+			<a href="{{ path('app_admin_author_show', { id: author.id }) }}">Voir l’auteur</a>
+			<a href="{{ path('app_admin_author_index') }}">Retour à la liste</a>
+		</div>
+	</section>
 {% endblock %}
 
 {# {% set action = app.current_route == 'app_admin_author_new' ? 'Ajout' : 'Edition' %}
@@ -50,7 +50,7 @@
             </a>
             {{ form_end(form) }}
             {# <a href="{{ path('app_admin_author_index') }}" class="btn btn-warning">Retour</a> #}
-        
-    {# </div>
+
+{# </div>
 </section>
 {% endblock %} #}
