@@ -24,6 +24,24 @@
                     <p><small>Nationalité : {{ author.nationality|country_name }}</small></p>
                 </div>
             </div>
+
+            <h4 class="mb-1">Livres de l’auteur</h4>
+
+{% if author.books is not empty %}
+    <ul class="list-group">
+        {% for book in author.books %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>
+                    <strong>{{ book.title }}</strong><br>
+                    {# <small>Publié le {{ book.publishedAt|date('d M Y') }}</small> #}
+                </span>
+                <a href="{{ path('app_admin_book_show', {id: book.id}) }}" class="btn btn-sm btn-secondary">Voir</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Aucun livre associé à cet auteur.</p>
+{% endif %}
         </div>
     {% else %}
         <div>Auteur non trouvé</div>
